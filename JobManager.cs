@@ -53,19 +53,29 @@ namespace ConsoleApp1
         public void ShowAll()
         {
             Console.WriteLine();
+
             // Kontrollerar om några ansökningar hittades
             if (Applications.Count == 0)
             {
-                Console.WriteLine("No job applications found.");
+                Console.WriteLine("Finns inga ansökningar.");
             }
             else
             {
                 // Loopar igenom listan och skriver ut alla ansökningar
                 foreach (var application in Applications)
                 {
+                    // Sätter färg baserat på ansökans status
+                    SetStatusColor(application.Status);
+
                     Console.WriteLine(application.GetSummary());
+
+                    // Återställer textfärgen
+                    Console.ResetColor();
+
+                    Console.WriteLine();
                 }
             }
+
             // Väntar på en tangent innan konsolen rensas
             Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
             Console.ReadKey();
@@ -364,6 +374,32 @@ namespace ConsoleApp1
             Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
             Console.ReadKey();
             Console.Clear();
+        }
+
+        //______________________________________________________________________________________________________________________________________________________________________________________________________
+
+        // Skapat en metod som sätter färgen på statusen i konsolen
+        private void SetStatusColor(Status status)
+        {
+            // Sätter färgen på texten i konsolen baserat på statusen
+            switch (status)
+            {
+                case Status.Applied:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    break;
+
+                case Status.Interview:
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    break;
+
+                case Status.Offer:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    break;
+
+                case Status.Rejected:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+            }
         }
 
         //______________________________________________________________________________________________________________________________________________________________________________________________________
