@@ -42,7 +42,10 @@
                     case 3:
                         jobManager.FilterByStatus();
                         break;
-              
+                    // Case 4 = Sortera ansökningar efter datum
+                    case 4:
+                        jobManager.SortByDate();
+                        break;
                 }
             }
         }

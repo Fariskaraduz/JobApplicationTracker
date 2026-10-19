@@ -45,13 +45,14 @@
         public void ShowAll()
         {
             Console.WriteLine();
-
+            // Kontrollerar om några ansökningar hittades
             if (Applications.Count == 0)
             {
                 Console.WriteLine("No job applications found.");
             }
             else
             {
+                // Loopar igenom listan och skriver ut alla ansökningar
                 foreach (var application in Applications)
                 {
                     Console.WriteLine(application.GetSummary());
@@ -105,13 +106,17 @@
                     break;
 
                 case 2:
+
+                    // Filtrerar fram ansökningar med status Interview
                     var interviewApplications = Applications.Where(a => a.Status == Status.Interview).ToList();
 
+                    // Kontrollerar om några ansökningar hittades
                     if (interviewApplications.Count == 0)
                     {
                         Console.WriteLine("Inga ansökningar med status 'Interview' hittades.");
                     }
 
+                    // Visar alla ansökningar som matchar statusen
                     foreach (var application in interviewApplications)
                     {
                         Console.WriteLine(application.GetSummary());
@@ -119,13 +124,17 @@
                     break;
 
                 case 3:
+
+                    // Filtrerar fram ansökningar med status Offer
                     var offerApplications = Applications.Where(a => a.Status == Status.Offer).ToList();
 
+                    // Kontrollerar om några ansökningar hittades
                     if (offerApplications.Count == 0)
                     {
                         Console.WriteLine("Inga ansökningar med status 'Offer' hittades.");
                     }
 
+                    // Visar alla ansökningar som matchar statusen
                     foreach (var application in offerApplications)
                     {
                         Console.WriteLine(application.GetSummary());
@@ -133,13 +142,17 @@
                     break;
 
                 case 4:
+
+                    // Filtrerar fram ansökningar med status Rejected
                     var rejectedApplications = Applications.Where(a => a.Status == Status.Rejected).ToList();
 
+                    // Kontrollerar om några ansökningar hittades
                     if (rejectedApplications.Count == 0)
                     {
                         Console.WriteLine("Inga ansökningar med status 'Rejected' hittades.");
                     }
 
+                    // Visar alla ansökningar som matchar statusen
                     foreach (var application in rejectedApplications)
                     {
                         Console.WriteLine(application.GetSummary());
@@ -150,6 +163,36 @@
                     // Hanterar ett val som inte finns
                     Console.WriteLine("Ogiltigt val. Vänligen försök igen.");
                     break;
+            }
+
+            // Väntar på en tangent innan konsolen rensas
+            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        // Lagt till en metod som sorterar ansökningar efter datum. Den sorterar listan med ansökningar i stigande ordning efter ansökningsdatum.
+        public void SortByDate()
+        {
+            // Om det inte finns några ansökningar i listan så skriver den ut ett meddelande och returnerar
+            if (Applications.Count == 0)
+            {
+                Console.WriteLine("Inga ansökningar att sortera.");
+                Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
+                Console.ReadKey();
+                Console.Clear();
+                return;
+            }
+
+            // Sorterar ansökningarna efter ansökningsdatum i stigande ordning
+            Applications = Applications.OrderBy(a => a.ApplicationDate).ToList();
+            Console.WriteLine();
+            Console.WriteLine("Ansökningar har sorterats efter ansökningsdatum.");
+
+            // Loopar igenom listan och skriver ut alla ansökningar
+            foreach (var application in Applications)
+            {
+                Console.WriteLine(application.GetSummary());
             }
 
             // Väntar på en tangent innan konsolen rensas
