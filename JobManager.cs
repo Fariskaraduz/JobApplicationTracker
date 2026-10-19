@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp1
+﻿using System.Threading.Channels;
+
+namespace ConsoleApp1
 {
 
     // skapat klassen JobManager
@@ -169,7 +171,7 @@
                 case 1:
 
                     // Filtrerar fram ansökningar med status Applied
-                    var appliedApplications = Applications.Where(a => a.Status == Status.Applied).ToList();
+                    var appliedApplications = Applications.Where(ansökan => ansökan.Status == Status.Applied).ToList();
 
                     // Kontrollerar om några ansökningar hittades
                     if (appliedApplications.Count == 0)
@@ -188,7 +190,7 @@
                 case 2:
 
                     // Filtrerar fram ansökningar med status Interview
-                    var interviewApplications = Applications.Where(a => a.Status == Status.Interview).ToList();
+                    var interviewApplications = Applications.Where(ansökan => ansökan.Status == Status.Interview).ToList();
 
                     // Kontrollerar om några ansökningar hittades
                     if (interviewApplications.Count == 0)
@@ -206,7 +208,7 @@
                 case 3:
 
                     // Filtrerar fram ansökningar med status Offer
-                    var offerApplications = Applications.Where(a => a.Status == Status.Offer).ToList();
+                    var offerApplications = Applications.Where(ansökan => ansökan.Status == Status.Offer).ToList();
 
                     // Kontrollerar om några ansökningar hittades
                     if (offerApplications.Count == 0)
@@ -224,7 +226,7 @@
                 case 4:
 
                     // Filtrerar fram ansökningar med status Rejected
-                    var rejectedApplications = Applications.Where(a => a.Status == Status.Rejected).ToList();
+                    var rejectedApplications = Applications.Where(ansökan => ansökan.Status == Status.Rejected).ToList();
 
                     // Kontrollerar om några ansökningar hittades
                     if (rejectedApplications.Count == 0)
@@ -269,7 +271,7 @@
             }
 
             // Sorterar ansökningarna efter ansökningsdatum i stigande ordning
-            Applications = Applications.OrderBy(a => a.ApplicationDate).ToList();
+            Applications = Applications.OrderBy(ansökan  => ansökan.ApplicationDate).ToList();
             Console.WriteLine();
             Console.WriteLine("Ansökningar har sorterats efter ansökningsdatum.");
 
@@ -293,11 +295,24 @@
             // Skriver ut statistik om ansökningarna
             Console.WriteLine();
             Console.WriteLine("Visa statistik");
+
             Console.WriteLine($"Totalt antal ansökningar: {Applications.Count}");
-            Console.WriteLine($"Antal ansökningar med status 'Applied': {Applications.Count(a => a.Status == Status.Applied)}");
-            Console.WriteLine($"Antal ansökningar med status 'Interview': {Applications.Count(a => a.Status == Status.Interview)}");
-            Console.WriteLine($"Antal ansökningar med status 'Offer': {Applications.Count(a => a.Status == Status.Offer)}");
-            Console.WriteLine($"Antal ansökningar med status 'Rejected': {Applications.Count(a => a.Status == Status.Rejected)}");
+
+            Console.WriteLine($"Antal ansökningar med status 'Applied': {Applications.Count(ansökan => ansökan.Status == Status.Applied)}");
+            Console.WriteLine($"Antal ansökningar med status 'Interview': {Applications.Count(ansökan => ansökan.Status == Status.Interview)}");
+            Console.WriteLine($"Antal ansökningar med status 'Offer': {Applications.Count(ansökan => ansökan.Status == Status.Offer)}");
+            Console.WriteLine($"Antal ansökningar med status 'Rejected': {Applications.Count(ansökan => ansökan.Status == Status.Rejected)}");
+
+            // Filtrerar fram ansökningar som har fått svar
+            var answeredApplications = Applications.Where(ansökan => ansökan.ResponseDate.HasValue).ToList();
+
+            // Beräknar genomsnittlig svarstid om det finns besvarade ansökningar
+            if (answeredApplications.Count > 0)
+            {
+                double averageResponseTime = answeredApplications.Average( ansökan => (ansökan.ResponseDate!.Value - ansökan.ApplicationDate).TotalDays);
+
+                Console.WriteLine($"Genomsnittlig svarstid: {averageResponseTime:F1} dagar");
+            }
 
             // Väntar på en tangent innan konsolen rensas
             Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
