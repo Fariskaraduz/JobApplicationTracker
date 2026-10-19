@@ -12,16 +12,23 @@
         {
             Console.WriteLine();
             Console.WriteLine("Lägg till ett jobb");
+
             Console.WriteLine("Ange företagets namn:");
             string companyName = Console.ReadLine()!;
+
             Console.WriteLine("Ange jobbtitel:");
             string positionTitle = Console.ReadLine()!;
+
             Console.WriteLine("Ange vad du förväntar dig att få i lön:");
             int SalaryExpectation = Convert.ToInt32(Console.ReadLine()!);
+
             Console.WriteLine("Ange vilket datum du ansöker om jobbet (yyyy-MM-dd):");
             string applicationDate = Console.ReadLine()!;
+
             Applications.Add(new JobApplication{CompanyName = companyName, PositionTitle = positionTitle, SalaryExpectation = SalaryExpectation, ApplicationDate = DateTime.Parse(applicationDate)});
+
             Console.WriteLine();
+
             Console.WriteLine($"Företag: {companyName}");
             Console.WriteLine($"Jobbtitel: {positionTitle}");
             Console.WriteLine($"Lön: {SalaryExpectation} kr");
@@ -35,6 +42,7 @@
         // Lagt till en metod som visar först om det finns ansökningar eller inte, om det finns ansökningar så loopar den igenom listan och skriver ut alla ansökningar
         public void ShowAll()
         {
+            Console.WriteLine();
 
             if (Applications.Count == 0)
             {
@@ -47,6 +55,9 @@
                     Console.WriteLine(application.GetSummary());
                 }
             }
+            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         // Lagt till en metod som uppdaterar statusen på en ansökan

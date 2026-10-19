@@ -30,11 +30,13 @@
                 // Skapat en switch case för att hantera användarens val av menyalternativ
                 switch (valAvMenyAlternativ)
                 {
+                    // Case 1 = Lägg till ny ansökan
                     case 1:
                         jobManager.AddJob();
                         break;
+                    // Case 2 = Visa alla ansökningar
                     case 2:
-                        
+                        jobManager.ShowAll();
                         break;
                  
                 }
