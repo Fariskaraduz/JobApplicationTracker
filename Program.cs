@@ -50,8 +50,22 @@
                     case 5:
                         jobManager.ShowStatistics();
                         break;
+                    // Case 6 = Uppdatera status på en ansökan
                     case 6:
                         jobManager.UpdateStatus();
+                        break;
+                    // Case 7 = Ta bort en ansökan
+                    case 7:
+                        jobManager.RemoveJob();
+                        break;
+                    // Case 8 = Avsluta programmet
+                    case 8:
+                        Console.WriteLine("Avslutar programmet...");
+                        menynFortsätter = false;
+                        break;
+                    // Default case = Ogiltigt val
+                    default:
+                        Console.WriteLine("Ogiltigt val, försök igen.");
                         break;
                 }
             }

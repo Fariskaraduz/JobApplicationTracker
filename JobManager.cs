@@ -69,6 +69,8 @@
         // Lagt till en metod som uppdaterar statusen på en ansökan
         public void UpdateStatus()
         {
+            Console.WriteLine();
+
             // kontrollerar om det finns några ansökningar i listan
             if (Applications.Count == 0)
             {
@@ -244,6 +246,8 @@
         // Lagt till en metod som sorterar ansökningar efter datum. Den sorterar listan med ansökningar i stigande ordning efter ansökningsdatum.
         public void SortByDate()
         {
+            Console.WriteLine();
+
             // Om det inte finns några ansökningar i listan så skriver den ut ett meddelande och returnerar
             if (Applications.Count == 0)
             {
@@ -287,6 +291,50 @@
             Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
             Console.ReadKey();
             Console.Clear();    
+        }
+
+        // Skapat en metod som tar bort specifika jobb som man väljer
+        public void RemoveJob()
+        {
+
+            Console.WriteLine();
+
+            // Kontrollerar om det finns några ansökningar i listan
+            if (Applications.Count == 0)
+            {
+                Console.WriteLine("Inga ansökningar hittades.");
+                Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
+                Console.ReadKey();
+                Console.Clear();
+                return;
+            }
+
+            // Loop som går igenom listan och skriver ut den med numrerat
+            for (int i = 0; i < Applications.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {Applications[i].GetSummary()}");
+            }
+            
+            Console.WriteLine("Ange numret på den ansökan du vill ta bort:");
+            int valAvAnsokan = Convert.ToInt32(Console.ReadLine());
+
+            // Kontrollerar att användaren har valt ett giltigt nummer
+            if (valAvAnsokan < 1 || valAvAnsokan > Applications.Count)
+            {
+                Console.WriteLine("Ogiltigt val.");
+            }
+
+            // Om valet är giltigt så tar den bort ansökan från listan
+            else
+            {
+                Applications.RemoveAt(valAvAnsokan - 1);
+                Console.WriteLine("Ansökan har tagits bort.");
+            }
+
+            // Väntar på en tangent innan konsolen rensas
+            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
