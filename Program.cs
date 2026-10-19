@@ -13,19 +13,15 @@
             // Skapat en while loop för att fortsätta visa menyn tills användaren väljer att avsluta
             while (menynFortsätter)
             {
-                // Skriver ut menyn till konsolen
-                Console.WriteLine("Välkommen till Job Application Tracker ");
-                Console.WriteLine("1. Lägg till ny ansökan");
-                Console.WriteLine("2. Visa alla ansökningar");
-                Console.WriteLine("3. Filtrera ansökningar efter status");
-                Console.WriteLine("4. Sortera ansökningar efter datum");
-                Console.WriteLine("5. Visa statistik");
-                Console.WriteLine("6. Uppdatera status på en ansökan");
-                Console.WriteLine("7. Ta bort en ansökan");
-                Console.WriteLine("8. Avsluta programmet");
+                // Menyn för programmet
+                Menu.ShowMenu();
 
-                // Läser in användarens val från konsolen och konverterar det till en int
-                int valAvMenyAlternativ = Convert.ToInt32(Console.ReadLine());
+                // Läst in användarens val av menyalternativ och konverterat det till ett heltal och gör så att det inte kraschar om användaren skriver in något annat än ett heltal
+                if (!int.TryParse(Console.ReadLine(), out int valAvMenyAlternativ))
+                {
+                    Console.WriteLine("Ogiltigt val, ange ett nummer.");
+                    continue; 
+                }
 
                 // Skapat en switch case för att hantera användarens val av menyalternativ
                 switch (valAvMenyAlternativ)
