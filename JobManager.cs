@@ -67,9 +67,77 @@
         }
 
         // Lagt till en metod som uppdaterar statusen på en ansökan
-        public void UpdateStatus(JobApplication application, Status newStatus)
+        public void UpdateStatus()
         {
-            application.Status = newStatus;
+            // kontrollerar om det finns några ansökningar i listan
+            if (Applications.Count == 0)
+            {
+                Console.WriteLine("Inga ansökningar hittades.");
+                Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
+                Console.ReadKey();
+                Console.Clear();
+                return;
+            }
+
+            // Skapar en loop som skriver ut alla ansökningar i nummer ordning
+            for (int i = 0; i < Applications.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {Applications[i].GetSummary()}");
+            }
+
+            Console.WriteLine("Välj en ansökan att uppdatera:");
+            int valdAnsokan = Convert.ToInt32(Console.ReadLine()!) - 1;
+
+            // Kontrollerar att valet finns i listan
+            if (valdAnsokan < 0 || valdAnsokan >= Applications.Count)
+            {
+                Console.WriteLine("Ogiltigt val.");
+                Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
+                Console.ReadKey();
+                Console.Clear();
+                return;
+            }
+
+            // Lagrar den valda ansökan i en variabel
+            var selectedApplication = Applications[valdAnsokan];
+
+            // Skriver ut den valda ansökans information
+            Console.WriteLine("Välj ny status:");
+            Console.WriteLine("1. Applied");
+            Console.WriteLine("2. Interview");
+            Console.WriteLine("3. Offer");
+            Console.WriteLine("4. Rejected");
+
+            int valdStatus = Convert.ToInt32(Console.ReadLine()!);
+            
+            // Uppdaterar statusen på den valda ansökan
+            switch (valdStatus)
+            {
+                case 1:
+                    selectedApplication.Status = Status.Applied;
+                    Console.WriteLine("Statusen har uppdaterats!");
+                    break;
+                case 2:
+                    selectedApplication.Status = Status.Interview;
+                    Console.WriteLine("Statusen har uppdaterats!");
+                    break;
+                case 3:
+                    selectedApplication.Status = Status.Offer;
+                    Console.WriteLine("Statusen har uppdaterats!");
+                    break;
+                case 4:
+                    selectedApplication.Status = Status.Rejected;
+                    Console.WriteLine("Statusen har uppdaterats!");
+                    break;
+                default:
+                    Console.WriteLine("Ogiltigt val.");
+                    break;
+            }
+
+            // Väntar på en tangent innan konsolen rensas
+            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         // Lagt till en metod som filtrerar ansökningar efter status. Den frågar användaren vilken status de vill filtrera och skriver sedan ut alla ansökningar som matchar den statusen.
@@ -220,7 +288,5 @@
             Console.ReadKey();
             Console.Clear();    
         }
-
-
     }
 }

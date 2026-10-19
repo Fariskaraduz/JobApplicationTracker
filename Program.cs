@@ -46,8 +46,12 @@
                     case 4:
                         jobManager.SortByDate();
                         break;
+                    // Case 5 = Visa statistik
                     case 5:
                         jobManager.ShowStatistics();
+                        break;
+                    case 6:
+                        jobManager.UpdateStatus();
                         break;
                 }
             }
