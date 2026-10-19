@@ -38,7 +38,11 @@
                     case 2:
                         jobManager.ShowAll();
                         break;
-                 
+                    // Case 3 = Filtrera ansökningar efter status
+                    case 3:
+                        jobManager.FilterByStatus();
+                        break;
+              
                 }
             }
         }
