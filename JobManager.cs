@@ -7,6 +7,8 @@
         // Skapat en lista av JobApplication som heter Applications. Listan innehåller alla ansökningar som användaren har lagt till
         public List<JobApplication> Applications { get; set; } = new List<JobApplication>();
 
+        //______________________________________________________________________________________________________________________________________________________________________________________________________
+
         // Skapat en metod som lägger till jobb ansökningar
         public void AddJob()
         {
@@ -43,6 +45,8 @@
             Console.Clear();
         }
 
+        //______________________________________________________________________________________________________________________________________________________________________________________________________
+
         // Lagt till en metod som visar först om det finns ansökningar eller inte, om det finns ansökningar så loopar den igenom listan och skriver ut alla ansökningar
         public void ShowAll()
         {
@@ -65,6 +69,8 @@
             Console.ReadKey();
             Console.Clear();
         }
+
+        //______________________________________________________________________________________________________________________________________________________________________________________________________
 
         // Lagt till en metod som uppdaterar statusen på en ansökan
         public void UpdateStatus()
@@ -141,6 +147,8 @@
             Console.ReadKey();
             Console.Clear();
         }
+
+        //______________________________________________________________________________________________________________________________________________________________________________________________________
 
         // Lagt till en metod som filtrerar ansökningar efter status. Den frågar användaren vilken status de vill filtrera och skriver sedan ut alla ansökningar som matchar den statusen.
         public void FilterByStatus()
@@ -243,6 +251,8 @@
             Console.Clear();
         }
 
+        //______________________________________________________________________________________________________________________________________________________________________________________________________
+
         // Lagt till en metod som sorterar ansökningar efter datum. Den sorterar listan med ansökningar i stigande ordning efter ansökningsdatum.
         public void SortByDate()
         {
@@ -275,6 +285,8 @@
             Console.Clear();
         }
 
+        //______________________________________________________________________________________________________________________________________________________________________________________________________
+
         // Lagt till en metod som visar statestik
         public void ShowStatistics()
         {
@@ -292,6 +304,8 @@
             Console.ReadKey();
             Console.Clear();    
         }
+
+        //______________________________________________________________________________________________________________________________________________________________________________________________________
 
         // Skapat en metod som tar bort specifika jobb som man väljer
         public void RemoveJob()
@@ -336,5 +350,7 @@
             Console.ReadKey();
             Console.Clear();
         }
+
+        //______________________________________________________________________________________________________________________________________________________________________________________________________
     }
 }

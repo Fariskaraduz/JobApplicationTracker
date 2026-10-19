@@ -30,14 +30,16 @@
         }
 
         // En metod som kort sammanfattar olika ansökan som text
+
         public string GetSummary()
         {
-            return $"Company: {CompanyName}";
-            return $"Position: {PositionTitle}";
-            return $"Salary Expectation: {SalaryExpectation}";
-            return $"Application Date: {ApplicationDate.ToShortDateString()};";
-            return $"Response Date: {(ResponseDate.HasValue ? ResponseDate.Value.ToShortDateString() : "N/A")};";
-            return $" Status: {Status}";
+            return $"Company: {CompanyName}\n" +
+                   $"Position: {PositionTitle}\n" +
+                   $"Salary Expectation: {SalaryExpectation} kr\n" +
+                   $"Application Date: {ApplicationDate.ToShortDateString()}\n" +
+                   $"Response Date: {(ResponseDate.HasValue ? ResponseDate.Value.ToShortDateString() : "N/A")}\n" +
+                   $"Status: {Status}";
         }
+
     }
 }
