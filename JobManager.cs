@@ -129,7 +129,7 @@ namespace ConsoleApp1
             Console.WriteLine("4. Rejected");
 
             int valdStatus = Convert.ToInt32(Console.ReadLine()!);
-            
+
             // Uppdaterar statusen på den valda ansökan
             switch (valdStatus)
             {
@@ -139,14 +139,17 @@ namespace ConsoleApp1
                     break;
                 case 2:
                     selectedApplication.Status = Status.Interview;
+                    selectedApplication.ResponseDate = DateTime.Now;
                     Console.WriteLine("Statusen har uppdaterats!");
                     break;
                 case 3:
                     selectedApplication.Status = Status.Offer;
+                    selectedApplication.ResponseDate = DateTime.Now;
                     Console.WriteLine("Statusen har uppdaterats!");
                     break;
                 case 4:
                     selectedApplication.Status = Status.Rejected;
+                    selectedApplication.ResponseDate = DateTime.Now;
                     Console.WriteLine("Statusen har uppdaterats!");
                     break;
                 default:
