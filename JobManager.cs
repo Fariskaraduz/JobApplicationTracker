@@ -25,10 +25,12 @@
             Console.WriteLine("Ange vilket datum du ansöker om jobbet (yyyy-MM-dd):");
             string applicationDate = Console.ReadLine()!;
 
+            // Lagt till en ny ansökan i listan med ansökningar. Den nya ansökan innehåller företagets namn, jobbtitel, löneförväntning och ansökningsdatum.
             Applications.Add(new JobApplication{CompanyName = companyName, PositionTitle = positionTitle, SalaryExpectation = SalaryExpectation, ApplicationDate = DateTime.Parse(applicationDate)});
 
             Console.WriteLine();
 
+            // Skriver ut information om den nya ansökan som har lagts till
             Console.WriteLine($"Företag: {companyName}");
             Console.WriteLine($"Jobbtitel: {positionTitle}");
             Console.WriteLine($"Lön: {SalaryExpectation} kr");
@@ -200,5 +202,25 @@
             Console.ReadKey();
             Console.Clear();
         }
+
+        // Lagt till en metod som visar statestik
+        public void ShowStatistics()
+        {
+            // Skriver ut statistik om ansökningarna
+            Console.WriteLine();
+            Console.WriteLine("Visa statistik");
+            Console.WriteLine($"Totalt antal ansökningar: {Applications.Count}");
+            Console.WriteLine($"Antal ansökningar med status 'Applied': {Applications.Count(a => a.Status == Status.Applied)}");
+            Console.WriteLine($"Antal ansökningar med status 'Interview': {Applications.Count(a => a.Status == Status.Interview)}");
+            Console.WriteLine($"Antal ansökningar med status 'Offer': {Applications.Count(a => a.Status == Status.Offer)}");
+            Console.WriteLine($"Antal ansökningar med status 'Rejected': {Applications.Count(a => a.Status == Status.Rejected)}");
+
+            // Väntar på en tangent innan konsolen rensas
+            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
+            Console.ReadKey();
+            Console.Clear();    
+        }
+
+
     }
 }

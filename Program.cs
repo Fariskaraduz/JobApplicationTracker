@@ -46,6 +46,9 @@
                     case 4:
                         jobManager.SortByDate();
                         break;
+                    case 5:
+                        jobManager.ShowStatistics();
+                        break;
                 }
             }
         }
