@@ -34,6 +34,8 @@
             Console.WriteLine($"Lön: {SalaryExpectation} kr");
             Console.WriteLine($"Ansökningsdatum: {applicationDate}");
             Console.WriteLine("Ansökan har lagts till.");
+
+            // Väntar på en tangent innan konsolen rensas
             Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
             Console.ReadKey();
             Console.Clear();
@@ -55,6 +57,7 @@
                     Console.WriteLine(application.GetSummary());
                 }
             }
+            // Väntar på en tangent innan konsolen rensas
             Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
             Console.ReadKey();
             Console.Clear();
@@ -64,6 +67,95 @@
         public void UpdateStatus(JobApplication application, Status newStatus)
         {
             application.Status = newStatus;
+        }
+
+        // Lagt till en metod som filtrerar ansökningar efter status. Den frågar användaren vilken status de vill filtrera och skriver sedan ut alla ansökningar som matchar den statusen.
+        public void FilterByStatus()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Välj vilket status du vill filtrera efter:");
+            Console.WriteLine("1. Applied");
+            Console.WriteLine("2. Interview");
+            Console.WriteLine("3. Offer");
+            Console.WriteLine("4. Rejected");
+
+            // Läser in användarens val och converterar det till en string
+            int valdAvStatusFiltrera = Convert.ToInt32(Console.ReadLine()!);
+
+            // Hanterar användarens val av status
+            switch (valdAvStatusFiltrera)
+            {
+                case 1:
+
+                    // Filtrerar fram ansökningar med status Applied
+                    var appliedApplications = Applications.Where(a => a.Status == Status.Applied).ToList();
+
+                    // Kontrollerar om några ansökningar hittades
+                    if (appliedApplications.Count == 0)
+                    {
+                        Console.WriteLine("Inga ansökningar med status 'Applied' hittades.");
+                    }
+
+                    // Visar alla ansökningar som matchar statusen
+                    foreach (var application in appliedApplications)
+                    {
+                        Console.WriteLine(application.GetSummary());
+                    }
+
+                    break;
+
+                case 2:
+                    var interviewApplications = Applications.Where(a => a.Status == Status.Interview).ToList();
+
+                    if (interviewApplications.Count == 0)
+                    {
+                        Console.WriteLine("Inga ansökningar med status 'Interview' hittades.");
+                    }
+
+                    foreach (var application in interviewApplications)
+                    {
+                        Console.WriteLine(application.GetSummary());
+                    }
+                    break;
+
+                case 3:
+                    var offerApplications = Applications.Where(a => a.Status == Status.Offer).ToList();
+
+                    if (offerApplications.Count == 0)
+                    {
+                        Console.WriteLine("Inga ansökningar med status 'Offer' hittades.");
+                    }
+
+                    foreach (var application in offerApplications)
+                    {
+                        Console.WriteLine(application.GetSummary());
+                    }
+                    break;
+
+                case 4:
+                    var rejectedApplications = Applications.Where(a => a.Status == Status.Rejected).ToList();
+
+                    if (rejectedApplications.Count == 0)
+                    {
+                        Console.WriteLine("Inga ansökningar med status 'Rejected' hittades.");
+                    }
+
+                    foreach (var application in rejectedApplications)
+                    {
+                        Console.WriteLine(application.GetSummary());
+                    }
+                    break;
+
+                default:
+                    // Hanterar ett val som inte finns
+                    Console.WriteLine("Ogiltigt val. Vänligen försök igen.");
+                    break;
+            }
+
+            // Väntar på en tangent innan konsolen rensas
+            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
