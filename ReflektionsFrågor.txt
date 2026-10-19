@@ -1,0 +1,16 @@
+1. Hur hjälpte LINQ dig att skriva renare kod?
+Genom att jag använde Linq så hjälpte de mit att skriva mycket kortare kod utan. 
+Utan linq så hade jag behövt skriva egna loopar och if satser för att kunna filtrera, 
+sortera samt räkna ansökningar, vilket hade blvit betydligt  längre och rörigare.
+
+2. Vilken del av projektet var mest utmanande, och hur löste du den?
+Det mest röriga var syntaxen vad jag skulle skriva och när. Jag hade inte föreställt mig att det skulle bli så mycket kod 
+men på något sätt blev det en hel del. Jag hade svårt att veta var jag skulle börja och ju mer kod jag skrev desto rörigare blev det.
+
+Jag har gjort den här uppgiften tre gånger under veckan som gått för att se om jag kan förbättra mig hela tiden. 
+Den här gången gjorde jag något som jag inte gjorde i början. Jag bröt ner hela uppgiften stegvis på papper. 
+Jag gjorde en tankekarta där jag skrev ner alla funktioner, klasser och metoder som jag behövde. 
+När jag var klar med nedbrytningen började jag koda, och då gick det bättre.
+
+Vissa delar var ändå krångliga, och där tog jag hjälp av AI för att förstå hur syntaxen skulle se ut. 
+Jag har lärt mig mycket av uppgiften.
